@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { trpc } from "@/lib/trpc";
 import { useSubscription } from "@/hooks/useSubscription";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -68,8 +68,14 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function SubmitTestimonialPage() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { data: session, status: sessionStatus } = useSession();
   const { isPaidUser, isLoading: isSubscriptionLoading } = useSubscription();
+
+  const callbackUrl = searchParams?.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
 
   // Fetch existing testimonial data to check if already submitted
   const { data, isLoading: isDataLoading } = (
@@ -214,7 +220,11 @@ export default function SubmitTestimonialPage() {
           </p>
           <div className="flex gap-4">
             <Button
-              onClick={() => router.push("/login")}
+              onClick={() =>
+                router.push(
+                  `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+                )
+              }
               className="bg-purple-600 hover:bg-purple-700 text-white"
             >
               Login
