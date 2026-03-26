@@ -504,7 +504,7 @@ const SecondaryPricingCard = ({ callbackUrl }: { callbackUrl: string }) => {
                 </h2>
               </div>
               <div className="flex items-center gap-3 mt-3 flex-wrap">
-                <p className="text-lg text-white-400">(~ ₹4,444 INR)</p>
+                <p className="text-lg text-white-400">(~ ₹4,549 INR)</p>
               </div>
             </div>
             <div className="w-full border-dashed border-border-primary px-6 lg:px-10 py-4 ">
