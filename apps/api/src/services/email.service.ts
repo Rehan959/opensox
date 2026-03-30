@@ -105,7 +105,7 @@ export const emailService = {
         </p>
         
         <p style="color: #333; line-height: 1.8; font-size: 16px;">
-          To get started, please watch this short 5 min <a href="https://youtu.be/tBY5M8WYx1M" style="color: `#007bff`;">prerequisite video</a> and then book your meeting slot on Cal.
+          To get started, please watch this short 5 min <a href="https://youtu.be/tBY5M8WYx1M" style="color: #007bff">prerequisite video</a> and then book your meeting slot on Cal.
         </p>
         
         <p style="color: #333; line-height: 1.8; font-size: 16px;">
