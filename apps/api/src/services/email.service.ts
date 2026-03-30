@@ -105,7 +105,7 @@ export const emailService = {
         </p>
         
         <p style="color: #333; line-height: 1.8; font-size: 16px;">
-          To get started, please book your slot in the cal meet.
+          To get started, please watch this short 5 min <a href="https://youtu.be/tBY5M8WYx1M" style="color: `#007bff`;">prerequisite video</a> and then book your meeting slot on Cal.
         </p>
         
         <p style="color: #333; line-height: 1.8; font-size: 16px;">
@@ -144,7 +144,7 @@ First of all, thank you for believing in me and Opensox AI.
 
 Throughout this journey, I will make sure you get the best value for your money.
 
-To get started, please book your slot in the cal meet.
+To get started, please watch this short 5 min prerequisite video: https://youtu.be/tBY5M8WYx1M and after that book your slot in the cal meet.
 
 Let's have a chat over a meeting so that I can understand where you are currently and how I can help you move ahead.
 
