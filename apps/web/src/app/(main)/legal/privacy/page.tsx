@@ -679,10 +679,10 @@ export default function PrivacyPolicyPage() {
               as possible. If you believe that a child under 13 years of age may
               have provided Personal Data to us, please contact us at{" "}
               <a
-                href="mailto:hi@opensox.ai"
+                href="mailto:opensoxlabs@gmail.com"
                 className="text-link hover:text-link-hover transition-colors"
               >
-                hi@opensox.ai
+                opensoxlabs@gmail.com
               </a>
               .
             </p>
@@ -704,10 +704,10 @@ export default function PrivacyPolicyPage() {
               marketing purposes; in order to submit such a request, please
               contact us at{" "}
               <a
-                href="mailto:hi@opensox.ai"
+                href="mailto:opensoxlabs@gmail.com"
                 className="text-link hover:text-link-hover transition-colors"
               >
-                hi@opensox.ai
+                opensoxlabs@gmail.com
               </a>
               .
             </p>
@@ -721,10 +721,10 @@ export default function PrivacyPolicyPage() {
               license or sell that Personal Data. You can exercise this right by
               contacting us at{" "}
               <a
-                href="mailto:hi@opensox.ai"
+                href="mailto:opensoxlabs@gmail.com"
                 className="text-link hover:text-link-hover transition-colors"
               >
-                hi@opensox.ai
+                opensoxlabs@gmail.com
               </a>{" "}
               with the subject line "Nevada Do Not Sell Request" and providing
               us with your name and the email address associated with your
@@ -828,10 +828,10 @@ export default function PrivacyPolicyPage() {
               including those set forth below. For more information about these
               rights, or to submit a request, please email us at{" "}
               <a
-                href="mailto:hi@opensox.ai"
+                href="mailto:opensoxlabs@gmail.com"
                 className="text-link hover:text-link-hover transition-colors"
               >
-                hi@opensox.ai
+                opensoxlabs@gmail.com
               </a>
               . Please note that in some circumstances, we may not be able to
               fully comply with your request, such as if it is frivolous or
@@ -943,10 +943,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:hi@opensox.ai"
+                  href="mailto:opensoxlabs@gmail.com"
                   className="text-link hover:text-link-hover transition-colors"
                 >
-                  hi@opensox.ai
+                  opensoxlabs@gmail.com
                 </a>
               </p>
               <p>

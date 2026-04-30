@@ -17,19 +17,17 @@ export function ContactInfo({
   return (
     <>
       {showTitle && (
-        <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
-          {titleText}
-        </h2>
+        <h2 className="text-2xl lg:text-3xl font-semibold mb-4">{titleText}</h2>
       )}
       {description && <p className="mb-4">{description}</p>}
       <div className="space-y-2">
         <p>
           <strong>Email:</strong>{" "}
           <a
-            href="mailto:hi@opensox.ai"
+            href="mailto:opensoxlabs@gmail.com"
             className="text-link hover:text-link-hover transition-colors"
           >
-            hi@opensox.ai
+            opensoxlabs@gmail.com
           </a>
         </p>
         <p>

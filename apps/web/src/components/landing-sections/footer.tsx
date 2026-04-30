@@ -9,10 +9,10 @@ const Footer = () => {
   const { trackLinkClick } = useAnalytics();
 
   const handleEmailClick = () => {
-    trackLinkClick("mailto:hi@opensox.ai", "Email", "footer", true);
+    trackLinkClick("mailto:opensoxlabs@gmail.com", "Email", "footer", true);
     const emailSubject = encodeURIComponent("[Inquiry about Opensox AI]");
     const emailBody = encodeURIComponent("Heyyo,\n\nwanna chat?");
-    const mailtoLink = `mailto:hi@opensox.ai?subject=${emailSubject}&body=${emailBody}`;
+    const mailtoLink = `mailto:opensoxlabs@gmail.com?subject=${emailSubject}&body=${emailBody}`;
     window.open(mailtoLink, "_blank");
   };
 

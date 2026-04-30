@@ -98,7 +98,7 @@ app.get("/test", apiLimiter, (req: Request, res: Response) => {
   res.status(200).json({ status: "ok", message: "Test endpoint is working" });
 });
 
-// Slack Community Invite Endpoint (Protected)
+// Discord Community Invite Endpoint (Protected)
 app.get("/join-community", apiLimiter, async (req: Request, res: Response) => {
   try {
     const authHeader = req.headers.authorization;
@@ -136,15 +136,15 @@ app.get("/join-community", apiLimiter, async (req: Request, res: Response) => {
       });
     }
 
-    // Get Slack invite URL from environment
-    const slackInviteUrl = process.env.SLACK_INVITE_URL;
-    if (!slackInviteUrl) {
-      console.error("SLACK_INVITE_URL not configured");
+    // Get Discord invite URL from environment
+    const discordInviteUrl = process.env.DISCORD_INVITE_URL;
+    if (!discordInviteUrl) {
+      console.error("DISCORD_INVITE_URL not configured");
       return res.status(500).json({ error: "Community invite not configured" });
     }
 
     return res.status(200).json({
-      slackInviteUrl,
+      discordInviteUrl,
       message: "Subscription verified. You can join the community.",
     });
   } catch (error: any) {

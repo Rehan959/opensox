@@ -112,7 +112,7 @@ const premiumPlanCard = {
     "1:1 session on finding remote jobs and internships in open-source companies.",
     "Quick doubts resolution.",
     "Personalized guidance for GSoC, LFX, Outreachy, etc",
-    "Access to Pro Slack where you can ask anything anytime.",
+    "Access to Pro Discord where you can ask anything anytime.",
     "Support to enhance skills for open source",
     "GSOC proposal, resume reviews, etc.",
     "Upcoming Pro features",
@@ -208,7 +208,7 @@ const Pricing = () => {
                                   <p key={sentenceIndex} className="mb-2">
                                     {sentence}
                                   </p>
-                                )
+                                ),
                               )}
                             </div>
                           ) : (
@@ -269,7 +269,7 @@ const Pricing = () => {
                                 <p key={sentenceIndex} className="mb-2">
                                   {sentence}
                                 </p>
-                              )
+                              ),
                             )}
                           </div>
                         ) : (
@@ -366,10 +366,10 @@ const Pricing = () => {
           <div className=" border-b border-[#252525] text-center py-4 font-bold px-4">
             For any doubts or queries, feel free to ping us at{" "}
             <Link
-              href="mailto:hi@opensox.ai"
+              href="mailto:opensoxlabs@gmail.com"
               className="hover:underline bg-gradient-to-b from-[#a472ea] via-[#a472ea]/80 to-[#432ba0] bg-clip-text text-transparent"
             >
-              hi@opensox.ai
+              opensoxlabs@gmail.com
             </Link>
           </div>
         </div>
