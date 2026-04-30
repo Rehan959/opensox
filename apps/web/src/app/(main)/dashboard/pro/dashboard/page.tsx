@@ -20,7 +20,7 @@ export default function ProDashboardPage() {
     }
   }, [isPaidUser, isLoading, router]);
 
-  const handleJoinSlack: () => Promise<void> = async () => {
+  const handleJoinDiscord: () => Promise<void> = async () => {
     if (isJoining) return;
 
     setIsJoining(true);
@@ -59,7 +59,7 @@ export default function ProDashboardPage() {
         return;
       }
 
-      let responseData: { slackInviteUrl?: string };
+      let responseData: { discordInviteUrl?: string };
       try {
         responseData = await response.json();
       } catch {
@@ -67,22 +67,22 @@ export default function ProDashboardPage() {
         return;
       }
 
-      const { slackInviteUrl } = responseData;
+      const { discordInviteUrl } = responseData;
 
-      if (!slackInviteUrl || typeof slackInviteUrl !== "string") {
-        setError("Invalid Slack invite URL received");
+      if (!discordInviteUrl || typeof discordInviteUrl !== "string") {
+        setError("Invalid Discord invite URL received");
         return;
       }
 
       // validate url format
       try {
-        new URL(slackInviteUrl);
+        new URL(discordInviteUrl);
       } catch {
-        setError("Invalid Slack invite URL format");
+        setError("Invalid Discord invite URL format");
         return;
       }
 
-      window.location.href = slackInviteUrl;
+      window.location.href = discordInviteUrl;
     } catch (err) {
       console.error("Failed to join community:", err);
       setError("Failed to connect to server");
@@ -120,11 +120,11 @@ export default function ProDashboardPage() {
               Pro Sessions
             </Link>
             <button
-              onClick={handleJoinSlack}
+              onClick={handleJoinDiscord}
               disabled={isJoining}
               className="px-4 py-2 bg-dash-surface border border-dash-border hover:border-brand-purple/50 text-text-primary font-medium rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
             >
-              {isJoining ? "Joining..." : "Join Slack"}
+              {isJoining ? "Joining..." : "Join Discord"}
             </button>
           </div>
         )}

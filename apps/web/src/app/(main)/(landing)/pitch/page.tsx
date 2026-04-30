@@ -244,7 +244,10 @@ const Pitch = () => {
                 <ul className="space-y-3 [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:text-text-secondary [&>li]:font-medium [&>li]:text-lg [&>li]:lowercase">
                   <li>
                     <CornerDownRight className="size-5 flex-shrink-0 text-brand-purple-light mt-1" />
-                    <span>is a Single Consolidate Platform for Everything in Open Source</span>
+                    <span>
+                      is a Single Consolidate Platform for Everything in Open
+                      Source
+                    </span>
                   </li>
                   <li>
                     <CornerDownRight className="size-5 flex-shrink-0 text-brand-purple-light mt-1" />
@@ -270,8 +273,8 @@ const Pitch = () => {
                   <strong className="text-brand-purple-light">
                     the bottom line
                   </strong>{" "}
-                  - my goal is to make you
-                  achieve things in 1 year that took me 3.
+                  - my goal is to make you achieve things in 1 year that took me
+                  3.
                 </p>
               </motion.div>
             </div>
@@ -308,7 +311,7 @@ const Pitch = () => {
                       <strong className="text-text-primary">
                         for timely human feedback 24/7
                       </strong>{" "}
-                      = a private slack channel
+                      = a private discord channel
                     </span>
                   </li>
                   <li>
@@ -336,8 +339,8 @@ const Pitch = () => {
                       <strong className="text-text-primary">
                         for freedom to ask anything anytime
                       </strong>{" "}
-                      = onboarding call + slack channel + pre-session 1:1 (every
-                      week).
+                      = onboarding call + discord channel + pre-session 1:1
+                      (every week).
                     </span>
                   </li>
                 </ul>
@@ -627,9 +630,10 @@ const Pitch = () => {
                         <CornerDownRight className="size-4 flex-shrink-0 text-brand-purple-light mt-1" />
                         <span>
                           also, you&apos;ll receive the invitation to our
-                          internal slack channel, there you&apos;ll receive all
-                          the updates like weekly meets, resources, discussions,
-                          etc. also, you can ping me there for any doubts.
+                          internal discord channel, there you&apos;ll receive
+                          all the updates like weekly meets, resources,
+                          discussions, etc. also, you can ping me there for any
+                          doubts.
                         </span>
                       </li>
                       <li className="flex items-start gap-3">
@@ -809,10 +813,10 @@ const Pitch = () => {
                   <p className="text-text-secondary font-medium text-lg lowercase">
                     my question isn&apos;t here? shoot it here:{" "}
                     <Link
-                      href="mailto:hi@opensox.ai"
+                      href="mailto:opensoxlabs@gmail.com"
                       className="text-link hover:text-link-hover underline"
                     >
-                      hi@opensox.ai
+                      opensoxlabs@gmail.com
                     </Link>{" "}
                     i&apos;ll reply within 24 hrs.
                   </p>

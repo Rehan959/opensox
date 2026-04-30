@@ -18,7 +18,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "Contact Us - Opensox AI",
   description:
-    "Get in touch with Opensox AI. Email hi@opensox.ai or call +91 844-7500-346 for support and inquiries.",
+    "Get in touch with Opensox AI. Email opensoxlabs@gmail.com or call +91 844-7500-346 for support and inquiries.",
 };
 
 export default function ContactPage() {
@@ -50,10 +50,10 @@ export default function ContactPage() {
                     Email
                   </h3>
                   <a
-                    href="mailto:hi@opensox.ai"
+                    href="mailto:opensoxlabs@gmail.com"
                     className="text-link hover:text-link-hover transition-colors text-lg break-all"
                   >
-                    hi@opensox.ai
+                    opensoxlabs@gmail.com
                   </a>
                   <p className="text-sm text-text-tertiary mt-2">
                     General inquiries, support, and feedback

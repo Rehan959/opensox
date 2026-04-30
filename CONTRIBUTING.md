@@ -122,6 +122,6 @@ if you have any questions or need assistance, feel free to:
 
 - [open an issue](https://github.com/apsinghdev/opensox/issues)
 - join our [discord community](https://discord.gg/zbHzgMNBrm)
-- email us at hi@opensox.ai
+- email us at opensoxlabs@gmail.com
 
 we're here to help! ❤️

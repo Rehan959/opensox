@@ -28,10 +28,10 @@ export default function TermsOfServicePage() {
               For questions or concerns regarding these Terms, please contact us
               at:{" "}
               <a
-                href="mailto:hi@opensox.ai"
+                href="mailto:opensoxlabs@gmail.com"
                 className="text-link hover:text-link-hover transition-colors"
               >
-                hi@opensox.ai
+                opensoxlabs@gmail.com
               </a>
             </p>
           </section>
@@ -458,7 +458,7 @@ export default function TermsOfServicePage() {
             <ol className="list-decimal list-inside space-y-2 ml-4">
               <li>
                 <strong>Informal Resolution:</strong> Contact us at
-                hi@opensox.ai to attempt good-faith resolution
+                opensoxlabs@gmail.com to attempt good-faith resolution
               </li>
               <li>
                 <strong>Binding Arbitration:</strong> If informal resolution
@@ -507,10 +507,10 @@ export default function TermsOfServicePage() {
               <p>
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:hi@opensox.ai"
+                  href="mailto:opensoxlabs@gmail.com"
                   className="text-link hover:text-link-hover transition-colors"
                 >
-                  hi@opensox.ai
+                  opensoxlabs@gmail.com
                 </a>
               </p>
               <p>

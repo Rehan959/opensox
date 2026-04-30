@@ -54,8 +54,8 @@ const CheckoutConfirmation: React.FC<CheckoutConfirmationProps> = ({
         return;
       }
 
-      const { slackInviteUrl } = await response.json();
-      window.open(slackInviteUrl, "_blank", "noopener,noreferrer");
+      const { discordInviteUrl } = await response.json();
+      window.open(discordInviteUrl, "_blank", "noopener,noreferrer");
     } catch (err) {
       console.error("Failed to join community:", err);
       setError("Failed to connect to server");
@@ -89,7 +89,9 @@ const CheckoutConfirmation: React.FC<CheckoutConfirmationProps> = ({
 
           <p className="text-lg lg:text-xl text-white/90 leading-relaxed font-light max-w-3xl mx-auto">
             If you have any doubts, feel free to ping us here:{" "}
-            <span className="text-brand-purple-light">hi@opensox.ai</span>
+            <span className="text-brand-purple-light">
+              opensoxlabs@gmail.com
+            </span>
           </p>
 
           {/* Action Buttons - Only shown when logged in */}
