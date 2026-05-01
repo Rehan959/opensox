@@ -64,14 +64,14 @@ export const imageTestimonials: ImageTestimonial[] = [
     alt: "User feedback about Opensox Pro",
   },
   {
-    id: "img-8",
+    id: "img-9",
     type: "image",
     imageUrl:
       "https://res.cloudinary.com/desjc8vzi/image/upload/v1777615311/ox-t3_z6indp.png",
     alt: "User feedback about Opensox Pro",
   },
   {
-    id: "img-8",
+    id: "img-10",
     type: "image",
     imageUrl:
       "https://res.cloudinary.com/desjc8vzi/image/upload/v1777615311/ox-t2_maslov.png",
