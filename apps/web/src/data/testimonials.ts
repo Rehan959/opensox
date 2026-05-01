@@ -56,4 +56,25 @@ export const imageTestimonials: ImageTestimonial[] = [
       "https://res.cloudinary.com/desjc8vzi/image/upload/v1767696812/Screenshot_2026-01-06_at_4.23.25_PM_vkcpns.png",
     alt: "User feedback about Opensox Pro",
   },
+  {
+    id: "img-8",
+    type: "image",
+    imageUrl:
+      "https://res.cloudinary.com/desjc8vzi/image/upload/v1777615309/ox-t1_quzape.png",
+    alt: "User feedback about Opensox Pro",
+  },
+  {
+    id: "img-9",
+    type: "image",
+    imageUrl:
+      "https://res.cloudinary.com/desjc8vzi/image/upload/v1777615311/ox-t3_z6indp.png",
+    alt: "User feedback about Opensox Pro",
+  },
+  {
+    id: "img-10",
+    type: "image",
+    imageUrl:
+      "https://res.cloudinary.com/desjc8vzi/image/upload/v1777615311/ox-t2_maslov.png",
+    alt: "User feedback about Opensox Pro",
+  },
 ];
