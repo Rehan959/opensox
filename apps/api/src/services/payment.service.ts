@@ -1,4 +1,5 @@
 import { rz_instance } from "../clients/razorpay.js";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import crypto from "crypto";
 import prismaModule from "../prisma.js";
 import {
@@ -7,6 +8,26 @@ import {
 } from "../constants/subscription.js";
 
 const { prisma } = prismaModule;
+
+function isTransientDbError(error: unknown): boolean {
+  if (
+    error instanceof PrismaClientKnownRequestError &&
+    (error.code === "P1001" ||
+      error.code === "P1002" ||
+      error.code === "P1008" ||
+      error.code === "P1017")
+  ) {
+    return true;
+  }
+  if (error instanceof Error) {
+    return (
+      error.message.includes("ECONNREFUSED") ||
+      error.message.includes("ETIMEDOUT") ||
+      error.message.includes("ENOTFOUND")
+    );
+  }
+  return false;
+}
 
 interface CreateOrderInput {
   amount: number;
@@ -71,17 +92,70 @@ export const paymentService = {
    * distinct users with an active subscription for the given plan (pro members)
    */
   async countActiveProMembersForPlan(planId: string): Promise<number> {
-    return prisma.user.count({
-      where: {
-        subscriptions: {
-          some: {
-            planId,
-            status: SUBSCRIPTION_STATUS.ACTIVE,
-            endDate: { gte: new Date() },
+    const maxRetries = 2;
+    const baseDelayMs = 100;
+    let lastError: unknown;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        return await prisma.user.count({
+          where: {
+            subscriptions: {
+              some: {
+                planId,
+                status: SUBSCRIPTION_STATUS.ACTIVE,
+                endDate: { gte: new Date() },
+              },
+            },
           },
-        },
-      },
-    });
+        });
+      } catch (error) {
+        lastError = error;
+        const transient = isTransientDbError(error);
+        const lastAttempt = attempt === maxRetries;
+
+        if (!transient || lastAttempt) {
+          const prismaCode =
+            error instanceof PrismaClientKnownRequestError
+              ? error.code
+              : undefined;
+          console.error(
+            JSON.stringify({
+              level: "error",
+              service: "paymentService",
+              operation: "countActiveProMembersForPlan",
+              event: "prisma.user.count_failed",
+              planId,
+              timestamp: new Date().toISOString(),
+              attempt: attempt + 1,
+              maxAttempts: maxRetries + 1,
+              transient,
+              prismaCode,
+              errorMessage:
+                error instanceof Error ? error.message : String(error),
+            })
+          );
+          throw new Error("Failed to count active pro members for plan");
+        }
+
+        const delayMs = baseDelayMs * Math.pow(2, attempt);
+        console.warn(
+          JSON.stringify({
+            level: "warn",
+            service: "paymentService",
+            operation: "countActiveProMembersForPlan",
+            event: "prisma.user.count_retry",
+            planId,
+            timestamp: new Date().toISOString(),
+            attempt: attempt + 1,
+            retryInMs: delayMs,
+          })
+        );
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+    }
+
+    throw new Error("Failed to count active pro members for plan");
   },
 
   /**
