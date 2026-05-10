@@ -1,4 +1,4 @@
-import { router, protectedProcedure } from "../trpc.js";
+import { router, protectedProcedure, publicProcedure } from "../trpc.js";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { paymentService } from "../services/payment.service.js";
@@ -24,6 +24,41 @@ const verifyPaymentSchema = z.object({
 });
 
 export const paymentRouter = router({
+  getPublicPlan: publicProcedure
+    .input(z.object({ planId: z.string().min(1, "Plan ID is required") }))
+    .query(async ({ input }) => {
+      const plan = await paymentService.getPlan(input.planId);
+
+      if (!plan) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Plan not found",
+        });
+      }
+
+      return {
+        price: plan.price,
+        currency: plan.currency,
+      };
+    }),
+
+  getProMemberCount: publicProcedure
+    .input(z.object({ planId: z.string().min(1, "Plan ID is required") }))
+    .query(async ({ input }) => {
+      const plan = await paymentService.getPlan(input.planId);
+      if (!plan) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Plan not found",
+        });
+      }
+
+      const count = await paymentService.countActiveProMembersForPlan(
+        input.planId
+      );
+      return { count };
+    }),
+
   createOrder: protectedProcedure
     .input(createOrderSchema)
     .mutation(
