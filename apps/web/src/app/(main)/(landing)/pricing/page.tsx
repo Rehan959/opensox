@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { ShineBorder } from "@/components/ui/shine-borders";
 import PrimaryButton from "@/components/ui/custom-button";
 import dynamic from "next/dynamic";
+import { trpc } from "@/lib/trpc";
+import { formatApproxPlanPrice } from "@/lib/format-plan-price";
 
 const Footer = dynamic(
   () =>
@@ -77,20 +79,24 @@ const opensoxFeatures = [
   },
 ];
 
-const whySub = [
+type WhySubItem =
+  | { kind: "text"; content: string }
+  | { kind: "pro_slots" };
+
+const whySub: WhySubItem[] = [
   {
+    kind: "text",
     content:
       "Currently, Opensox 2.0 is in progress (70% done) so till the launch, we are offering Pro plan at a discounted price - $49 for the whole year",
   },
+  { kind: "pro_slots" },
   {
-    content:
-      "This offer is only available for the first 1000 (64 slots booked) users",
-  },
-  {
+    kind: "text",
     content:
       "After the launch, this $49 offer be removed and Opensox Pro will be around ~ $89 for whole year.",
   },
   {
+    kind: "text",
     content: "The price of the dollar is constantly increasing.",
   },
 ];
@@ -129,6 +135,14 @@ const premiumPlanCard = {
 const Pricing = () => {
   const pathname = usePathname();
   const callbackUrl = `${pathname}#pro-price-card`;
+  const premiumPlanId = process.env.NEXT_PUBLIC_YEARLY_PREMIUM_PLAN_ID;
+  const planIdOk =
+    typeof premiumPlanId === "string" && premiumPlanId.length > 0;
+
+  const { data: proMemberCountData } = trpc.payment.getProMemberCount.useQuery(
+    { planId: premiumPlanId ?? "" },
+    { enabled: planIdOk }
+  );
 
   useEffect(() => {
     const handleHashScroll = () => {
@@ -328,7 +342,28 @@ const Pricing = () => {
                       className="flex items-center gap-4"
                     >
                       <Target className="size-5 flex-shrink-0 text-[#a472ea]" />
-                      {sub.content}
+                      {sub.kind === "pro_slots" ? (
+                        planIdOk ? (
+                          <span className="min-w-0">
+                            This offer is only available for the first 200 (
+                            {proMemberCountData !== undefined ? (
+                              <span className="text-success-text">
+                                {proMemberCountData.count} slots booked
+                              </span>
+                            ) : (
+                              <span className="text-text-muted">…</span>
+                            )}
+                            ) users
+                          </span>
+                        ) : (
+                          <span className="min-w-0">
+                            This offer is only available for the first 200
+                            users
+                          </span>
+                        )
+                      ) : (
+                        sub.content
+                      )}
                     </motion.p>
                   );
                 })}
@@ -465,6 +500,16 @@ const SecondaryPricingCard = ({ callbackUrl }: { callbackUrl: string }) => {
   const planIdOk =
     typeof premiumPlanId === "string" && premiumPlanId.length > 0;
 
+  const { data: publicPlan } = trpc.payment.getPublicPlan.useQuery(
+    { planId: premiumPlanId ?? "" },
+    { enabled: planIdOk }
+  );
+
+  const { data: proMemberCountData } = trpc.payment.getProMemberCount.useQuery(
+    { planId: premiumPlanId ?? "" },
+    { enabled: planIdOk }
+  );
+
   return (
     <div className="py-2">
       <div className=" border-border-primary w-full mx-auto flex h-full">
@@ -477,8 +522,8 @@ const SecondaryPricingCard = ({ callbackUrl }: { callbackUrl: string }) => {
               loading="lazy"
               className="object-cover object-bottom w-full h-full absolute -z-10"
             />
-            <div className="w-full border-dashed border-border-primary px-6 lg:px-10 pb-4">
-              <div className="w-12 h-12 relative">
+            <div className="w-full border-dashed border-border-primary px-6 lg:px-10 pb-4 flex items-start justify-between gap-3">
+              <div className="w-12 h-12 relative flex-shrink-0">
                 <Image
                   src="/assets/logo_var2.svg"
                   alt="background"
@@ -487,6 +532,39 @@ const SecondaryPricingCard = ({ callbackUrl }: { callbackUrl: string }) => {
                   className="object-cover size-full"
                 />
               </div>
+              {planIdOk ? (
+                <div
+                  className="flex items-center justify-end gap-2 min-w-0 pt-0.5 text-right"
+                  role="status"
+                  aria-live="polite"
+                  aria-label={
+                    proMemberCountData !== undefined
+                      ? `${proMemberCountData.count} shareholders invested`
+                      : "loading shareholder count"
+                  }
+                >
+                  {proMemberCountData !== undefined ? (
+                    <>
+                      <span
+                        className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center"
+                        aria-hidden
+                      >
+                        <span className="absolute size-[18px] rounded-full border border-success-text/50" />
+                        <span className="absolute size-[12px] rounded-full border border-success-text/65" />
+                        <span className="relative z-10 size-2 rounded-full bg-success-text animate-pulse" />
+                      </span>
+                      <p className="text-xs sm:text-sm text-success-text font-medium leading-snug">
+                        <span className="tabular-nums">
+                          {proMemberCountData.count}
+                        </span>{" "}
+                        shareholders invested
+                      </p>
+                    </>
+                  ) : (
+                    <span className="text-xs text-text-muted">…</span>
+                  )}
+                </div>
+              ) : null}
             </div>
             <ShineBorder shineColor={["#7150E7", "#C89BFF", "#432BA0"]} />
 
@@ -504,7 +582,11 @@ const SecondaryPricingCard = ({ callbackUrl }: { callbackUrl: string }) => {
                 </h2>
               </div>
               <div className="flex items-center gap-3 mt-3 flex-wrap">
-                <p className="text-lg text-white-400">(~ ₹4,549 INR)</p>
+                {publicPlan ? (
+                  <p className="text-lg text-white-400">
+                    {formatApproxPlanPrice(publicPlan.price, publicPlan.currency)}
+                  </p>
+                ) : null}
               </div>
             </div>
             <div className="w-full border-dashed border-border-primary px-6 lg:px-10 py-4 ">

@@ -68,6 +68,23 @@ export const paymentService = {
   },
 
   /**
+   * distinct users with an active subscription for the given plan (pro members)
+   */
+  async countActiveProMembersForPlan(planId: string): Promise<number> {
+    return prisma.user.count({
+      where: {
+        subscriptions: {
+          some: {
+            planId,
+            status: SUBSCRIPTION_STATUS.ACTIVE,
+            endDate: { gte: new Date() },
+          },
+        },
+      },
+    });
+  },
+
+  /**
    * Create a new Razorpay order
    */
   async createOrder(input: CreateOrderInput): Promise<CreateOrderResponse> {
