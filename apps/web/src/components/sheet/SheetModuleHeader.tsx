@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Download, Share2, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -26,7 +26,7 @@ export function SheetModuleHeader({
   const [copied, setCopied] = useState(false);
 
   // Compute next module
-  const nextModule = (() => {
+  const nextModule = useMemo(() => {
     if (!currentModuleId || modules.length === 0) return null;
 
     const sortedModules = [...modules].sort((a, b) => {
@@ -44,7 +44,7 @@ export function SheetModuleHeader({
     }
 
     return sortedModules[currentIndex + 1];
-  })();
+  }, [currentModuleId, modules]);
 
   const handleShare = async () => {
     try {
